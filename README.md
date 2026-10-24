@@ -79,7 +79,7 @@ HACS can offer new GitHub releases from this repository. Releases should use tag
 
 ## Support
 
-If you find News Ticker useful, you can [buy me a coffee](https://buymeacoffee.com/homeassi82vk) ☕. Support is optional; the integration is free to use. GitHub also displays a Sponsor button configured in `.github/FUNDING.yml`.
+If you find News Ticker useful, you can [buy me a coffee](https://buymeacoffee.com/homeassi82vk) ☕. Support is optional; the integration is free to use.
 
 ## License
 
