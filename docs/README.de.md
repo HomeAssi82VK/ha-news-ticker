@@ -62,4 +62,5 @@ Beispiel-YAML: [examples/card.yaml](../examples/card.yaml). Zum Testen mehrerer 
 
 ## Projekt unterstützen ☕
 
-Wenn dir News Ticker gefällt, kannst du das Projekt freiwillig auf [![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/homeassi82vk) unterstützen. Die Integration bleibt kostenlos.
+Wenn dir News Ticker gefällt, kannst du das Projekt freiwillig unterstützen. Die Integration bleibt kostenlos.
+[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/homeassi82vk)
