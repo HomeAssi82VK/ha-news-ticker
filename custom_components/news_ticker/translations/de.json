@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "News Ticker aktivieren",
+        "description": "Aktiviere den RSS-Dienst. Deine Nachrichtenquellen stellst du später direkt im grafischen Karteneditor ein."
+      }
+    },
+    "abort": {
+      "already_configured": "News Ticker ist bereits eingerichtet."
+    }
+  }
+}

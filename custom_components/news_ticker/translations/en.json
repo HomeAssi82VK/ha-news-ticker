@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Enable News Ticker",
+        "description": "Enable the RSS service. Configure your feeds directly in the card's visual editor."
+      }
+    },
+    "abort": {
+      "already_configured": "News Ticker is already configured."
+    }
+  }
+}

@@ -1,0 +1,7 @@
+News Ticker v1.0.6 Beta 7
+
+This beta combines the proven RSS/Atom recovery backend, visual editor, theme support, seamless ticker loop and Grid layout fix. Uses standard Home Assistant custom-card registration; deliberately excludes the experimental v1.0.7 Beta 8 picker monkey patch.
+
+Important: after HACS installation, restart Home Assistant Core, add the News Ticker integration and register the JavaScript module resource `/news_ticker/news-ticker-card.js?v=1.0.6-beta.7`.
+
+Community beta; independent test feedback welcome. GitHub HACS/hassfest action results and formal HACS listing are pending.

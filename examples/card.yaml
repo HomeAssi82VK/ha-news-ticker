@@ -1,0 +1,24 @@
+# Beispiel-Konfiguration für eine manuelle Home-Assistant-Karte
+# Alternativ alle Einstellungen im grafischen Karteneditor vornehmen.
+type: custom:news-ticker-card
+title: SAARLAND NEWS
+feeds:
+  - url: https://www.tagesschau.de/inland/regional/saarland/index~rss2.xml
+    name: Tagesschau Saarland
+    enabled: true
+  - url: https://www.heise.de/newsticker/heise-atom.xml
+    name: heise
+    enabled: true
+theme: nightglow  # nightglow | tv | minimal | transparent | custom
+mode: continuous # continuous | slide | fade
+speed: 62
+interval: 6
+height: 58
+font_size: 15
+max_items: 20
+refresh_minutes: 10
+show_source: true
+show_clock: true
+pause_on_hover: true
+new_tab: true
+exclude_keywords: ""
