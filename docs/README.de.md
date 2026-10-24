@@ -17,7 +17,7 @@
 **News Ticker ist noch nicht im offiziellen HACS-Katalog gelistet.** Für die Beta können Tester das öffentliche GitHub-Projekt aber als **benutzerdefiniertes Repository** zu HACS hinzufügen und spätere GitHub-Releases über HACS aktualisieren.
 
 1. In **HACS → Drei-Punkte-Menü → Benutzerdefinierte Repositories** gehen.
-2. Diese **konkrete Repository-Adresse** eintragen (nicht die URL deines GitHub-Profils):
+2. Diese **konkrete Repository-Adresse** eintragen:
 
    ```text
    https://github.com/HomeAssi82VK/ha-news-ticker
