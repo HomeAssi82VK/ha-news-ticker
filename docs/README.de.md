@@ -1,6 +1,6 @@
 # News Ticker – deutsche Anleitung
 
-**News Ticker v1.0.6** kombiniert eine Home-Assistant-Integration zum RSS-Abruf und eine Dashboard-Karte mit grafischem Editor. Die im Alltag funktionierende Version nutzt **keinen internen Home-Assistant-Katalog-Patch**.
+**News Ticker v1.0.7** kombiniert eine Home-Assistant-Integration zum RSS-Abruf und eine Dashboard-Karte mit grafischem Editor. Die im Alltag funktionierende Version nutzt **keinen internen Home-Assistant-Katalog-Patch**.
 
 ## Funktionen
 
@@ -20,7 +20,7 @@
 4. Unter **Einstellungen → Dashboards → Ressourcen** diese Adresse als **JavaScript-Modul** hinzufügen:
 
    ```text
-   /news_ticker/news-ticker-card.js?v=1.0.6
+   /news_ticker/news-ticker-card.js?v=1.0.7
    ```
 
 5. Browser neu laden. Dashboard bearbeiten → **Karte hinzufügen → Nach Karte → Community-Karten → News Ticker Card**. RSS-/Atom-Quellen im grafischen Editor eintragen.
@@ -35,7 +35,7 @@
 2. `custom_components/news_ticker` vollständig nach `/config/custom_components/news_ticker` kopieren.
 3. **Home Assistant Core neu starten**.
 4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → News Ticker** wählen.
-5. Unter **Einstellungen → Dashboards → Ressourcen** `/news_ticker/news-ticker-card.js?v=1.0.6` als **JavaScript-Modul** eintragen.
+5. Unter **Einstellungen → Dashboards → Ressourcen** `/news_ticker/news-ticker-card.js?v=1.0.7` als **JavaScript-Modul** eintragen.
 6. Browser hart neu laden und die **News Ticker Card** über den Karteneditor hinzufügen.
 
 HACS-Installation und manuelle Installation desselben Integrationsordners nicht mischen.

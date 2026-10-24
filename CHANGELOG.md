@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.7] - 2026-10-25
+
+- Fix bounded RSS downloads: consume HTTP response chunks until EOF, rejecting feeds immediately after the decompressed body exceeds 1.5 MB.
+- Prevent truncated HTTP reads and enforce the same size cap even when Content-Length is missing or incorrect.
+- Add regression tests for multi-chunk, limit-boundary, oversized, and truncated-read scenarios.
+- Keep existing RSS parsing, URL validation, redirects, Lovelace themes, and animation logic unchanged.
+
+
 ## [1.0.6] - 2026-10-24
 
 - First regular (non-prerelease) version of News Ticker.

@@ -107,10 +107,15 @@ class FeedFetcher:
                     current = validate_public_url(urljoin(current, location))
                     continue
                 response.raise_for_status()
-                data = await response.content.read(MAX_BYTES + 1)
-                if len(data) > MAX_BYTES:
-                    raise ValueError("RSS-Feed ist zu groß (maximal 1,5 MB)")
-                return data, response.status, response.headers.get("Content-Type", "")
+                # A single StreamReader.read(n) may return fewer than n bytes,
+                # even if the server is still sending data. Read through EOF;
+                # enforce MAX_BYTES on every chunk, including decompressed data.
+                data = bytearray()
+                async for chunk in response.content.iter_chunked(65536):
+                    if len(data) + len(chunk) > MAX_BYTES:
+                        raise ValueError("RSS-Feed ist zu groß (maximal 1,5 MB)")
+                    data.extend(chunk)
+                return bytes(data), response.status, response.headers.get("Content-Type", "")
         raise ValueError("Zu viele HTTP-Weiterleitungen")
 
     async def get(self, url: str, ttl: int) -> list[dict]:

@@ -1,14 +1,15 @@
-News Ticker v1.0.6
+News Ticker v1.0.7
 
-First regular release of News Ticker for Home Assistant.
+Stability and security maintenance release for HACS review.
 
-Features:
-- Up to eight RSS/Atom sources with server-side fetching and caching
-- Visual card editor, themes and three animation styles
-- Seamless scrolling, including a single headline, and Grid/Sections layout support
-- Improved handling of malformed XML responses
-- Standard Home Assistant custom-card registration, without experimental internal picker patches
+Fixes:
+- Read RSS/Atom HTTP responses completely in bounded chunks instead of relying on a single StreamReader.read() call.
+- Reject a feed as soon as the accumulated body exceeds 1,500,000 bytes, including after HTTP decompression.
+- Prevent partial downloads from entering the RSS parser.
+- Add isolated regression tests for the HTTP download size limit and multi-chunk responses.
 
-Installation: Find News Ticker in HACS under Integrations, install it and restart Home Assistant Core. Add the News Ticker integration under Devices & services, then register /news_ticker/news-ticker-card.js?v=1.0.6 as a JavaScript module in Dashboard Resources. If the project is not yet listed in your HACS search, use https://github.com/HomeAssi82VK/ha-news-ticker as a custom Integration repository.
+Unchanged: Home Assistant integration setup, public-URL and redirect checks, RSS/Atom parser, editor, themes, animations, and displayed feed content.
 
-This is a normal release, not a GitHub pre-release. The functionality is unchanged from the tested earlier build; feedback from other Home Assistant environments is welcome.
+Update: Install v1.0.7 through HACS and restart Home Assistant Core. If the JavaScript resource URL includes a cache-busting parameter, change it to /news_ticker/news-ticker-card.js?v=1.0.7 and refresh the browser.
+
+GitHub Release: publish v1.0.7 as a regular release (not a pre-release). This release addresses the size-limit review finding in hacs/default PR #12602.
