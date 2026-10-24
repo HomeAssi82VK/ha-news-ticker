@@ -1,6 +1,6 @@
-# News Ticker – Beta-Testprotokoll
+# News Ticker – Testprotokoll
 
-Bitte die **v1.0.6-beta.7** testen, nicht die experimentelle Beta 8.
+Bitte die aktuelle reguläre Version **v1.0.6** testen.
 
 - Home Assistant Core-Version:
 - HACS-Version:

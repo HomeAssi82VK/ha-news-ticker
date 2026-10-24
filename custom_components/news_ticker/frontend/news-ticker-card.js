@@ -1,6 +1,6 @@
-/* News Ticker Card 1.0.6-beta.7 — card-picker preview compatibility; grid and RSS unchanged. */
+/* News Ticker Card 1.0.6 — card-picker preview compatibility; grid and RSS unchanged. */
 (() => {
-  const VERSION = "1.0.6-beta.7";
+  const VERSION = "1.0.6";
   const THEMES = {
     nightglow: { bg: "#101923", fg: "#e3f4f8", accent: "#14bdcd", separator: "#e6ac46" },
     tv: { bg: "#13284b", fg: "#ffffff", accent: "#d52235", separator: "#ffcb44" },

@@ -10,4 +10,4 @@ python -m pytest -q tests/test_feed.py
 node --check custom_components/news_ticker/frontend/news-ticker-card.js
 ```
 
-The project is maintained as a community beta. Please open a pull request for code changes instead of pushing directly to the main branch.
+The project is maintained as a community project. Please open a pull request for code changes instead of pushing directly to the main branch.

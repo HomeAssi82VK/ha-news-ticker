@@ -2,7 +2,7 @@
 
 A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a backend feed fetcher with a Lovelace card and a **visual configuration editor**.
 
-**Current release:** `v1.0.6-beta.7` · Community beta, tested on Home Assistant 2026 in one installation. Wider compatibility is being evaluated.
+**Current release:** `v1.0.6` · Community release, tested on Home Assistant 2026 in one installation. Wider compatibility is being evaluated.
 
 **Deutsch:** [Deutsche Anleitung](docs/README.de.md) · [Changelog](CHANGELOG.md) · [Report a bug](https://github.com/HomeAssi82VK/ha-news-ticker/issues) · [Support the project](#support)
 
@@ -29,7 +29,7 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
 5. In **Settings → Dashboards → Resources**, add the following URL as a **JavaScript module**:
 
    ```text
-   /news_ticker/news-ticker-card.js?v=1.0.6-beta.7
+   /news_ticker/news-ticker-card.js?v=1.0.6
    ```
 
 6. Hard-refresh your browser. Edit your dashboard → **Add card → By card → Community cards → News Ticker Card**. Configure your RSS sources in the visual editor.
@@ -43,7 +43,7 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
    https://github.com/HomeAssi82VK/ha-news-ticker
    ```
 
-3. Install **News Ticker** from HACS (select the beta release if required), then follow steps **3–6** above.
+3. Install **News Ticker** from HACS, then follow steps **3–6** above.
 
 **Why a separate resource?** The integration fetches and caches RSS feeds; the dashboard resource loads the visual card. Both steps are currently needed.
 
@@ -53,7 +53,7 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
 2. Copy the entire `custom_components/news_ticker` folder into `/config/custom_components/news_ticker` on your Home Assistant installation.
 3. **Restart Home Assistant Core**.
 4. Go to **Settings → Devices & services → Add integration → News Ticker**.
-5. Add `/news_ticker/news-ticker-card.js?v=1.0.6-beta.7` as a **JavaScript module** in **Settings → Dashboards → Resources**.
+5. Add `/news_ticker/news-ticker-card.js?v=1.0.6` as a **JavaScript module** in **Settings → Dashboards → Resources**.
 6. Hard-refresh the browser, then add **News Ticker Card** from **By card → Community cards** and configure your RSS URLs.
 
 Do not mix a HACS-managed installation and a manually maintained copy of the same integration. After a JavaScript update, change the `?v=` query to match the installed release and refresh; Python updates normally require a Core restart.
@@ -74,7 +74,7 @@ Feeds are operated by third parties; availability and content are beyond this pr
 
 ## Compatibility and known limitations
 
-- Currently a beta. Not yet accepted into the official HACS default catalog.
+- Community release. Not yet accepted into the official HACS default catalog.
 - The Home Assistant dashboard card picker can be affected by other third-party cards that reassign `window.customCards`; this release uses the standard registration without patching Home Assistant internals.
 - RSS feeds with malformed XML may yield only recoverable entries or no headlines.
 - Feeds hosted on private IP addresses/LANs and nonstandard ports are intentionally blocked.
@@ -82,7 +82,7 @@ Feeds are operated by third parties; availability and content are beyond this pr
 
 ## Updates and releases
 
-HACS can offer new GitHub releases from this repository. Releases should use tags like `v1.0.6-beta.7` and keep `custom_components/news_ticker/manifest.json` and the frontend `VERSION` consistent. See [release checklist](docs/RELEASE_GUIDE.de.md).
+HACS can offer new GitHub releases from this repository. Releases should use tags like `v1.0.6` and keep `custom_components/news_ticker/manifest.json` and the frontend `VERSION` consistent. See [release checklist](docs/RELEASE_GUIDE.de.md).
 
 ## Support ☕
 
