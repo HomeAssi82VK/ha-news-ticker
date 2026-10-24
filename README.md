@@ -21,7 +21,7 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
 **News Ticker is not yet listed in the official HACS catalog.** During beta testing, you can install it through HACS as a **custom repository**. This also enables future updates through HACS once GitHub releases are available.
 
 1. Open **HACS → ⋮ → Custom repositories**.
-2. Enter the **News Ticker repository URL**, not your personal GitHub profile URL:
+2. Enter the **News Ticker repository URL**:
 
    ```text
    https://github.com/HomeAssi82VK/ha-news-ticker
