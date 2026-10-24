@@ -9,6 +9,6 @@ Features:
 - Improved handling of malformed XML responses
 - Standard Home Assistant custom-card registration, without experimental internal picker patches
 
-Installation: Add https://github.com/HomeAssi82VK/ha-news-ticker as an Integration custom repository in HACS until its official catalog entry is accepted. Install News Ticker, restart Home Assistant Core, add the integration under Devices & services, and register the dashboard resource as JavaScript module: /news_ticker/news-ticker-card.js?v=1.0.6
+Installation: Find News Ticker in HACS under Integrations, install it and restart Home Assistant Core. Add the News Ticker integration under Devices & services, then register /news_ticker/news-ticker-card.js?v=1.0.6 as a JavaScript module in Dashboard Resources. If the project is not yet listed in your HACS search, use https://github.com/HomeAssi82VK/ha-news-ticker as a custom Integration repository.
 
 This is a normal release, not a GitHub pre-release. The functionality is unchanged from the tested earlier build; feedback from other Home Assistant environments is welcome.

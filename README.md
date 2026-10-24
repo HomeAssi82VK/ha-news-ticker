@@ -18,34 +18,20 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
 
 ## Installation with HACS
 
-**Status:** News Ticker has not yet been accepted into the official HACS catalog. The regular installation method below will be available once it is listed. **For now, use the custom repository instructions immediately below it.**
-
-### Official HACS catalog (once listed)
-
 1. Open **HACS** in Home Assistant and search for **News Ticker** under **Integrations**.
-2. Download/install **News Ticker**.
-3. **Restart Home Assistant Core**.
-4. Go to **Settings → Devices & services → Add integration** and add **News Ticker**.
-5. In **Settings → Dashboards → Resources**, add the following URL as a **JavaScript module**:
+2. Install **News Ticker**, then **restart Home Assistant Core**.
+3. Go to **Settings → Devices & services → Add integration** and add **News Ticker**.
+4. Under **Settings → Dashboards → Resources**, add this URL as a **JavaScript module**:
 
    ```text
    /news_ticker/news-ticker-card.js?v=1.0.6
    ```
 
-6. Hard-refresh your browser. Edit your dashboard → **Add card → By card → Community cards → News Ticker Card**. Configure your RSS sources in the visual editor.
+5. Reload your browser. Edit your dashboard → **Add card → By card → Community cards → News Ticker Card**. Add your RSS/Atom sources using the visual editor.
 
-### Until official listing: custom HACS repository
+**Not showing up in HACS search?** Open **HACS → Custom repositories**, add `https://github.com/HomeAssi82VK/ha-news-ticker` as category **Integration**, then install it and continue with step 2. This is a fallback while the catalog listing is unavailable.
 
-1. In HACS, open **Custom repositories** (three-dot menu).
-2. Enter this repository URL and select category **Integration**:
-
-   ```text
-   https://github.com/HomeAssi82VK/ha-news-ticker
-   ```
-
-3. Install **News Ticker** from HACS, then follow steps **3–6** above.
-
-**Why a separate resource?** The integration fetches and caches RSS feeds; the dashboard resource loads the visual card. Both steps are currently needed.
+**Why register a dashboard resource separately?** The integration fetches and caches RSS feeds; the JavaScript module displays the card. Both are currently required.
 
 ### Manual installation (without HACS)
 
@@ -74,7 +60,7 @@ Feeds are operated by third parties; availability and content are beyond this pr
 
 ## Compatibility and known limitations
 
-- Community release. Not yet accepted into the official HACS default catalog.
+- Community release; broader testing across different Home Assistant installations is welcome.
 - The Home Assistant dashboard card picker can be affected by other third-party cards that reassign `window.customCards`; this release uses the standard registration without patching Home Assistant internals.
 - RSS feeds with malformed XML may yield only recoverable entries or no headlines.
 - Feeds hosted on private IP addresses/LANs and nonstandard ports are intentionally blocked.
