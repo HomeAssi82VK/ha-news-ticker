@@ -1,3 +1,4 @@
+
 {
   "domain": "news_ticker",
   "name": "News Ticker",
@@ -14,7 +15,7 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/HomeAssi82VK/ha-news-ticker/issues",
   "requirements": [
-    "defusedxml==0.7.1"
+    "defusedxml>=0.7.1"
   ],
   "version": "1.0.6-beta.7"
 }
