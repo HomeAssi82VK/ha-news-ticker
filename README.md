@@ -77,9 +77,13 @@ Feeds are operated by third parties; availability and content are beyond this pr
 
 HACS can offer new GitHub releases from this repository. Releases should use tags like `v1.0.6-beta.7` and keep `custom_components/news_ticker/manifest.json` and the frontend `VERSION` consistent. See [release checklist](docs/RELEASE_GUIDE.de.md).
 
-## Support
+## Support ☕
 
-If you find News Ticker useful, you can [buy me a coffee](https://buymeacoffee.com/homeassi82vk) ☕. Support is optional; the integration is free to use.
+If you enjoy News Ticker, consider supporting the project!
+
+[![Buy Me a Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/homeassi82vk)
+
+News Ticker is free and open source. Donations are entirely optional.
 
 ## License
 
