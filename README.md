@@ -16,29 +16,36 @@ A customizable RSS/Atom news ticker for Home Assistant dashboards, combining a b
 - Public HTTP(S) URLs only; built-in blocking of local/private RSS destinations
 - Compatible with Grid and Sections views in the environment tested
 
-## Beta installation (not yet in the official HACS catalog)
+## Installation with HACS
 
-**News Ticker is not yet listed in the official HACS catalog.** During beta testing, you can install it through HACS as a **custom repository**. This also enables future updates through HACS once GitHub releases are available.
+**Status:** News Ticker has not yet been accepted into the official HACS catalog. The regular installation method below will be available once it is listed. **For now, use the custom repository instructions immediately below it.**
 
-1. Open **HACS → ⋮ → Custom repositories**.
-2. Enter the **News Ticker repository URL**:
+### Official HACS catalog (once listed)
 
-   ```text
-   https://github.com/HomeAssi82VK/ha-news-ticker
-   ```
-
-3. Select category **Integration** and add the repository.
-4. Find **News Ticker** in HACS and install it, then **restart Home Assistant Core**.
-5. Go to **Settings → Devices & services → Add integration → News Ticker**.
-6. Under **Settings → Dashboards → Resources**, add this URL as a **JavaScript module**:
+1. Open **HACS** in Home Assistant and search for **News Ticker** under **Integrations**.
+2. Download/install **News Ticker**.
+3. **Restart Home Assistant Core**.
+4. Go to **Settings → Devices & services → Add integration** and add **News Ticker**.
+5. In **Settings → Dashboards → Resources**, add the following URL as a **JavaScript module**:
 
    ```text
    /news_ticker/news-ticker-card.js?v=1.0.6-beta.7
    ```
 
-7. Hard-refresh your browser. Edit your dashboard → **Add card → By card → Community cards → News Ticker Card**. Enter your RSS URLs in the visual editor.
+6. Hard-refresh your browser. Edit your dashboard → **Add card → By card → Community cards → News Ticker Card**. Configure your RSS sources in the visual editor.
 
-**Why two steps inside Home Assistant?** The integration retrieves and caches feeds; the dashboard resource loads the visual card. The resource registration is currently a separate step.
+### Until official listing: custom HACS repository
+
+1. In HACS, open **Custom repositories** (three-dot menu).
+2. Enter this repository URL and select category **Integration**:
+
+   ```text
+   https://github.com/HomeAssi82VK/ha-news-ticker
+   ```
+
+3. Install **News Ticker** from HACS (select the beta release if required), then follow steps **3–6** above.
+
+**Why a separate resource?** The integration fetches and caches RSS feeds; the dashboard resource loads the visual card. Both steps are currently needed.
 
 ### Manual installation (without HACS)
 
