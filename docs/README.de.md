@@ -12,24 +12,40 @@
 - Serverbasierter RSS-Abruf mit Cache und Fehlerdiagnose
 - Fortlaufender Ticker auch bei nur einer Schlagzeile
 
-## Installation über HACS
+## Beta-Installation über ein benutzerdefiniertes HACS-Repository
 
-1. **GitHub-Repository öffentlich veröffentlichen.** In HACS unter **Benutzerdefinierte Repositories** `https://github.com/HomeAssi82VK/ha-news-ticker` als **Integration** hinzufügen. Der Link funktioniert erst, wenn das Repository existiert.
-2. **News Ticker** über HACS installieren.
-3. **Home Assistant Core neu starten** (nicht das ganze Betriebssystem).
-4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → News Ticker** aktivieren.
-5. **Einstellungen → Dashboards → Ressourcen**: folgende URL mit dem Typ **JavaScript-Modul** hinzufügen:
+**News Ticker ist noch nicht im offiziellen HACS-Katalog gelistet.** Für die Beta können Tester das öffentliche GitHub-Projekt aber als **benutzerdefiniertes Repository** zu HACS hinzufügen und spätere GitHub-Releases über HACS aktualisieren.
+
+1. In **HACS → Drei-Punkte-Menü → Benutzerdefinierte Repositories** gehen.
+2. Diese **konkrete Repository-Adresse** eintragen (nicht die URL deines GitHub-Profils):
+
+   ```text
+   https://github.com/HomeAssi82VK/ha-news-ticker
+   ```
+
+3. Als Kategorie **Integration** auswählen und hinzufügen.
+4. **News Ticker** in HACS installieren und **Home Assistant Core neu starten**.
+5. Unter **Einstellungen → Geräte & Dienste → Integration hinzufügen** die Integration **News Ticker** einrichten.
+6. Unter **Einstellungen → Dashboards → Ressourcen** diese Adresse als **JavaScript-Modul** hinzufügen:
 
    ```text
    /news_ticker/news-ticker-card.js?v=1.0.6-beta.7
    ```
 
-6. Browser hart neu laden (`Strg+F5`). Dashboard bearbeiten → **Karte hinzufügen → Nach Karte → Community-Karten → News Ticker Card**.
-7. Quellen im grafischen Editor eintragen und **Prüfen** drücken.
+7. Browser mit **Strg + F5** neu laden. Dashboard bearbeiten → **Karte hinzufügen → Nach Karte → Community-Karten → News Ticker Card**. RSS-Quellen im grafischen Editor eintragen.
 
-## Manuelle Installation
+**Warum Integration und Ressource?** Die Integration lädt RSS-Inhalte vom Server; die Dashboard-Ressource lädt die grafische Karte. Beides ist derzeit notwendig.
 
-`custom_components/news_ticker` vollständig nach `/config/custom_components/news_ticker` kopieren; anschließend Schritte 3–7 befolgen. **Nicht** denselben Integrationsordner parallel manuell und über HACS verwalten.
+## Manuelle Installation (ohne HACS)
+
+1. Den GitHub-Quellcode als ZIP herunterladen und entpacken.
+2. `custom_components/news_ticker` vollständig nach `/config/custom_components/news_ticker` kopieren.
+3. **Home Assistant Core neu starten**.
+4. **Einstellungen → Geräte & Dienste → Integration hinzufügen → News Ticker** wählen.
+5. Unter **Einstellungen → Dashboards → Ressourcen** `/news_ticker/news-ticker-card.js?v=1.0.6-beta.7` als **JavaScript-Modul** eintragen.
+6. Browser hart neu laden und die **News Ticker Card** über den Karteneditor hinzufügen.
+
+HACS-Installation und manuelle Installation desselben Integrationsordners nicht mischen.
 
 ## Update
 
@@ -43,8 +59,6 @@ Nach einem HACS-Update ist bei geänderten Python-Dateien ein **Home Assistant C
 - Einige Nachrichtenquellen liefern beschädigtes XML. Der Parser rettet nach Möglichkeit lesbare Einträge; nicht alle Fehler können automatisch korrigiert werden.
 
 Beispiel-YAML: [examples/card.yaml](../examples/card.yaml). Zum Testen mehrerer Home-Assistant-Installationen: [Testprotokoll](TESTING.de.md).
-
-**Hinweis:** Noch nicht offiziell im HACS-Standardkatalog gelistet. Freiwillige Unterstützung per Buy Me a Coffee kann später ergänzt werden; aktuell kein aktiver Spendenlink.
 
 ## Projekt unterstützen ☕
 
