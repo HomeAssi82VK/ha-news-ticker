@@ -1,6 +1,6 @@
 # News Ticker – Testprotokoll
 
-Bitte die aktuelle reguläre Version **v1.0.6** testen.
+Bitte die aktuelle reguläre Version **v1.1.0** testen.
 
 - Home Assistant Core-Version:
 - HACS-Version:

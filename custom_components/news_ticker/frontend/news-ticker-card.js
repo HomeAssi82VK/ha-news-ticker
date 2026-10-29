@@ -1,8 +1,7 @@
-/* News Ticker Card 1.0.7 — card-picker preview compatibility; grid and RSS unchanged. */
+/* News Ticker Card 1.1.0 — adjustable label shapes and widths; RSS/backend unchanged. */
 (() => {
-  const VERSION = "1.0.7";
+  const VERSION = "1.1.0";
   const THEMES = {
-    nightglow: { bg: "#101923", fg: "#e3f4f8", accent: "#14bdcd", separator: "#e6ac46" },
     tv: { bg: "#13284b", fg: "#ffffff", accent: "#d52235", separator: "#ffcb44" },
     minimal: { bg: "#25272b", fg: "#f0f0f0", accent: "#636b74", separator: "#c0c0c0" },
     transparent: { bg: "transparent", fg: "var(--primary-text-color, #eee)", accent: "#278a9c", separator: "var(--secondary-text-color, #aaa)" },
@@ -10,8 +9,9 @@
   const DEFAULT = {
     type: "custom:news-ticker-card",
     title: "NEWS",
+    title_shape: "straight", title_width: null,
     feeds: [{ url: "https://www.tagesschau.de/index~rss2.xml", name: "Tagesschau", enabled: true }],
-    theme: "nightglow", mode: "continuous", speed: 62,
+    theme: "minimal", mode: "continuous", speed: 62,
     interval: 6, height: 58, font_size: 15, max_items: 20,
     refresh_minutes: 10, show_source: true, show_clock: false,
     pause_on_hover: true, new_tab: true, exclude_keywords: "",
@@ -46,6 +46,10 @@
     config.refresh_minutes = clamp(config.refresh_minutes, 2, 60, 10);
     config.theme = [...Object.keys(THEMES), "custom"].includes(config.theme) ? config.theme : DEFAULT.theme;
     config.mode = ["continuous", "slide", "fade"].includes(config.mode) ? config.mode : DEFAULT.mode;
+    // Existing News Ticker cards stay rectangular with automatic label width.
+    config.title_shape = ["pointed", "rounded", "straight"].includes(config.title_shape) ? config.title_shape : "straight";
+    config.title_width = config.title_width === null || config.title_width === undefined || config.title_width === ""
+      ? null : Math.round(clamp(config.title_width, 55, 360, 140));
     return config;
   };
   const options = (entries, active) => entries.map(([v, label]) =>
@@ -212,13 +216,19 @@
       this._resizeObserver = null;
       const c = this._config;
       const colors = this._colors();
-      const style = `--nt-bg:${colors.bg};--nt-fg:${colors.fg};--nt-accent:${colors.accent};--nt-separator:${colors.separator};--nt-height:${c.height}px;--nt-font:${c.font_size}px;`;
+      const style = `--nt-bg:${colors.bg};--nt-fg:${colors.fg};--nt-accent:${colors.accent};--nt-separator:${colors.separator};--nt-height:${c.height}px;--nt-font:${c.font_size}px;${c.title_width === null ? "" : `--nt-title-width:${c.title_width}px;`}`;
       this.shadowRoot.innerHTML = `
         <style>
           :host { display:block; width:100%; max-width:100%; min-width:0; box-sizing:border-box; contain:inline-size; }
           ha-card { display:block; width:100%; max-width:100%; min-width:0; background:var(--nt-bg) !important; color:var(--nt-fg); overflow:hidden; box-sizing:border-box; }
           .bar { height:var(--nt-height); box-sizing:border-box; display:flex; align-items:center; width:100%; min-width:0; overflow:hidden; }
-          .label { align-self:stretch; background:var(--nt-accent); color:#fff; padding:0 13px; display:flex; align-items:center; justify-content:center; text-transform:uppercase; letter-spacing:.08em; font-size:12px; font-weight:800; white-space:nowrap; max-width:32%; flex-shrink:0; z-index:1; }
+          .label { align-self:stretch; background:var(--nt-accent); color:#fff; padding:0 13px; display:flex; align-items:center; justify-content:center; text-transform:uppercase; letter-spacing:.08em; font-size:12px; font-weight:800; white-space:nowrap; max-width:32%; flex-shrink:0; z-index:1; box-sizing:border-box; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+          /* Pointed shape reserves its tip inside the assigned width. */
+          .label.shape-pointed { clip-path:polygon(0 0,calc(100% - 13px) 0,100% 50%,calc(100% - 13px) 100%,0 100%); padding-right:26px; }
+          .label.shape-rounded { border-radius:0 999px 999px 0; padding-right:19px; }
+          .label.shape-straight { border-radius:0; }
+          /* Fixed width wins over flex sizing and natural label width; never change the ticker viewport width calculation. */
+          .label.fixed-width { width:var(--nt-title-width); flex:0 0 var(--nt-title-width); max-width:min(var(--nt-title-width), calc(100% - 42px)); }
           .viewport { position:relative; flex:1; min-width:0; overflow:hidden; display:flex; align-items:center; height:100%; }
           .track { position:absolute; left:0; top:0; height:100%; display:flex; align-items:center; white-space:nowrap; width:max-content; will-change:transform; animation:nt-marquee var(--duration,40s) linear infinite; }
           .group { display:flex; flex:none; align-items:center; white-space:nowrap; padding-right:22px; box-sizing:border-box; }
@@ -242,7 +252,7 @@
         </style>
         <ha-card style="${esc(style)}">
           <div class="bar mode-${esc(c.mode)}">
-            ${c.title ? `<div class="label">${esc(c.title)}</div>` : ""}
+            ${c.title ? `<div class="label shape-${esc(c.title_shape)}${c.title_width !== null ? " fixed-width" : ""}" title="${esc(c.title)}">${esc(c.title)}</div>` : ""}
             <div class="viewport" aria-label="Nachrichtenticker"></div>
             ${c.show_clock ? `<div class="clock" aria-label="Uhrzeit"></div>` : ""}
           </div>
@@ -354,6 +364,18 @@
         label { display:grid; gap:5px; font-size:12px; font-weight:600; }
         input:not([type=checkbox]), select { box-sizing:border-box; min-width:0; width:100%; font:inherit; font-size:14px; border:1px solid var(--divider-color,#9aa); color:var(--primary-text-color); background:var(--card-background-color,#fff); border-radius:8px; padding:9px; }
         input[type=color] { min-height:42px; padding:4px; }
+        input[type=range] { accent-color:var(--primary-color,#14bdcd); height:25px; padding:0; border:none; background:transparent; cursor:pointer; }
+        .width-controls { display:grid; gap:7px; }
+        .width-value { font-variant-numeric:tabular-nums; font-weight:700; }
+        .width-grid { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:end; }
+        .width-grid button { height:39px; }
+        .title-preview { display:flex; align-items:center; min-width:0; overflow:hidden; height:47px; border-radius:9px; border:1px solid var(--divider-color,#9995); background:var(--nt-preview-bg,#101923); color:var(--nt-preview-fg,#fff); }
+        .title-preview .preview-label { display:flex; align-items:center; justify-content:center; flex:0 0 auto; min-width:0; max-width:calc(100% - 35px); box-sizing:border-box; overflow:hidden; white-space:nowrap; padding:0 13px; height:100%; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; background:var(--nt-preview-accent,#14bdcd); color:white; }
+        .title-preview .preview-label.shape-pointed { clip-path:polygon(0 0,calc(100% - 13px) 0,100% 50%,calc(100% - 13px) 100%,0 100%); padding-right:26px; }
+        .title-preview .preview-label.shape-rounded { border-radius:0 999px 999px 0; padding-right:19px; }
+        .title-preview .preview-label.shape-straight { border-radius:0; }
+        .preview-news { padding:0 12px; white-space:nowrap; opacity:.85; font-size:12px; }
+        @media(max-width:420px) { .grid { grid-template-columns:1fr; } }
         .checkbox { display:flex; flex-direction:row; align-items:center; gap:9px; padding:3px 0; font-size:13px; font-weight:500; }
         input[type=checkbox] { accent-color:var(--primary-color); width:17px; height:17px; }
         .feed { border:1px solid var(--divider-color,#9995); border-radius:10px; padding:10px; display:grid; gap:9px; }
@@ -371,10 +393,26 @@
         <div class="hint">Bis zu 8 Quellen pro Karte. Ein Klick auf „Prüfen“ testet den Feed über Home Assistant.</div>
         <h3>Design</h3>
         <label>Theme<select data-field="theme">${options([
-          ["nightglow","Cinematic Nightglow"], ["tv","TV News Classic"],
+          ["tv","TV News Classic"],
           ["minimal","Minimal Dark"], ["transparent","Transparent"],
           ["custom","Eigene Farben"]], c.theme)}</select></label>
         <label>Titel / Senderkennung<input data-field="title" type="text" maxlength="25" placeholder="NEWS" value="${esc(c.title)}"></label>
+        <label>Form des Titelfelds<select data-field="title_shape">${options([
+          ["pointed","Spitz"], ["rounded","Rund"], ["straight","Gerade"]
+        ],c.title_shape)}</select></label>
+        <div class="width-controls">
+          <label for="nt-design-width">Titelbreite <span class="width-value" data-width-value>${c.title_width === null ? "Automatisch" : `${c.title_width} px`}</span></label>
+          <input id="nt-design-width" type="range" min="55" max="360" step="1" data-title-width value="${c.title_width ?? 140}" aria-label="Titelbreite in Pixeln">
+          <div class="width-grid">
+            <label>Breite genau (px)<input type="number" data-width-number min="55" max="360" placeholder="Automatisch" value="${c.title_width ?? ""}"></label>
+            <button type="button" data-width-reset ${c.title_width === null ? "disabled" : ""}>Automatisch</button>
+          </div>
+          <div class="hint">Feste Breite von 55–360 px oder automatisch wie bisher.</div>
+          <div class="title-preview" style="--nt-preview-bg:${esc(c.theme === "custom" ? c.colors.bg : THEMES[c.theme].bg)};--nt-preview-fg:${esc(c.theme === "custom" ? c.colors.fg : THEMES[c.theme].fg)};--nt-preview-accent:${esc(c.theme === "custom" ? c.colors.accent : THEMES[c.theme].accent)}">
+            <span class="preview-label shape-${esc(c.title_shape)}" style="${c.title_width === null ? "" : `width:${c.title_width}px;`}">${esc(c.title || "NEWS")}</span>
+            <span class="preview-news">Schlagzeile läuft hier …</span>
+          </div>
+        </div>
         ${c.theme === "custom" ? `<div class="grid">${[
           ["bg","Hintergrund"],["fg","Schrift"],["accent","Ticker-Label"],["separator","Quelle & Trenner"]]
           .map(([k,l]) => `<label>${l}<input type="color" data-color="${k}" value="${isHex(c.colors[k]) ? c.colors[k] : DEFAULT.colors[k]}"></label>`).join("")}</div>` : ""}
@@ -400,6 +438,20 @@
         <label class="checkbox"><input data-bool="new_tab" type="checkbox" ${c.new_tab ? "checked" : ""}> Artikel in neuem Tab öffnen</label>
         <div class="hint">Die Karte zeigt nur die Überschriften. Links führen zu den Originalartikeln. Daten werden vom HA-Server zwischengespeichert.</div>
       </div>`;
+      const widthSlider = this.shadowRoot.querySelector("[data-title-width]");
+      widthSlider?.addEventListener("input", () => {
+        const value = widthSlider.value;
+        this.shadowRoot.querySelector("[data-width-value]").textContent = `${value} px`;
+        this.shadowRoot.querySelector("[data-width-number]").value = value;
+        const preview = this.shadowRoot.querySelector(".title-preview .preview-label");
+        if (preview) preview.style.width = `${value}px`;
+      });
+      widthSlider?.addEventListener("change", () => this._change({ title_width: Number(widthSlider.value) }));
+      this.shadowRoot.querySelector("[data-width-number]")?.addEventListener("change", (event) => {
+        const value = event.target.value;
+        this._change({ title_width: value === "" ? null : Number(value) });
+      });
+      this.shadowRoot.querySelector("[data-width-reset]")?.addEventListener("click", () => this._change({ title_width: null }));
       this.shadowRoot.querySelectorAll("[data-field]").forEach((input) => {
         input.addEventListener("change", () => this._change({ [input.dataset.field]: input.value }));
       });
@@ -457,7 +509,7 @@
   const cardMetadata = {
     type: "news-ticker-card",
     name: "News Ticker Card",
-    description: "RSS-/Atom-Nachrichtenticker mit Themes und grafischem Editor",
+    description: "RSS/Atom-Nachrichtenticker mit einstellbarer Titelform und Titelbreite",
     preview: false,
   };
   const existingCard = window.customCards.find((entry) => entry?.type === cardMetadata.type);

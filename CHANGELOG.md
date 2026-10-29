@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0] - 2026-10-28
+
+- Add adjustable title-label shapes: pointed, rounded and straight.
+- Add individually adjustable label width (55-360 px or automatic) in the visual editor.
+- Remove Cinematic Nightglow from the built-in themes and default configuration.
+- Migrate existing Nightglow configurations safely to Minimal Dark.
+- Preserve RSS/Atom fetching, filters, animations, clock, layout, and the v1.0.7 bounded HTTP download fix.
+
+
 ## [1.0.7] - 2026-10-25
 
 - Fix bounded RSS downloads: consume HTTP response chunks until EOF, rejecting feeds immediately after the decompressed body exceeds 1.5 MB.

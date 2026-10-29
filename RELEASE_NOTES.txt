@@ -1,15 +1,15 @@
-News Ticker v1.0.7
+News Ticker Card v1.1.0
 
-Stability and security maintenance release for HACS review.
+New in this stable release:
+- Adjustable title field shapes: Pointed, Rounded, Straight.
+- Adjustable title field width: 55-360 px or automatic.
+- Cinematic Nightglow removed (old configurations fall back to Minimal Dark).
+- Feed processing, animations, filtering, clock and editor functionality retained.
+- v1.0.7 HTTP download/size-limit review fix and regression tests retained.
 
-Fixes:
-- Read RSS/Atom HTTP responses completely in bounded chunks instead of relying on a single StreamReader.read() call.
-- Reject a feed as soon as the accumulated body exceeds 1,500,000 bytes, including after HTTP decompression.
-- Prevent partial downloads from entering the RSS parser.
-- Add isolated regression tests for the HTTP download size limit and multi-chunk responses.
+After installing via HACS, set the dashboard resource to
+/news_ticker/news-ticker-card.js?v=1.1.0
+and reload the browser. Restart Home Assistant Core if required after the integration update.
 
-Unchanged: Home Assistant integration setup, public-URL and redirect checks, RSS/Atom parser, editor, themes, animations, and displayed feed content.
-
-Update: Install v1.0.7 through HACS and restart Home Assistant Core. If the JavaScript resource URL includes a cache-busting parameter, change it to /news_ticker/news-ticker-card.js?v=1.0.7 and refresh the browser.
-
-GitHub Release: publish v1.0.7 as a regular release (not a pre-release). This release addresses the size-limit review finding in hacs/default PR #12602.
+GitHub release: v1.1.0 (stable, not prerelease).
+HACS catalog pull request: https://github.com/hacs/default/pull/12602
