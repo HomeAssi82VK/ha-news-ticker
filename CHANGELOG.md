@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.2] - 2026-11-02
+
+- Synchronize integration manifest, frontend version and release documentation.
+- Retain optimized brand icons introduced in v1.1.1.
+- No functional changes.
+
+## [1.1.1] - 2026-11-02
+
+- Reduce `brand/icon.png` to 256 × 256 pixels and add 512 × 512 `brand/icon@2x.png`.
+- No functional changes.
+
 ## [1.1.0] - 2026-10-28
 
 - Add adjustable title-label shapes: pointed, rounded and straight.

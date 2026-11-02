@@ -1,6 +1,6 @@
-/* News Ticker Card 1.1.0 — adjustable label shapes and widths; RSS/backend unchanged. */
+/* News Ticker Card 1.1.2 — adjustable label shapes and widths; RSS/backend unchanged. */
 (() => {
-  const VERSION = "1.1.0";
+  const VERSION = "1.1.2";
   const THEMES = {
     tv: { bg: "#13284b", fg: "#ffffff", accent: "#d52235", separator: "#ffcb44" },
     minimal: { bg: "#25272b", fg: "#f0f0f0", accent: "#636b74", separator: "#c0c0c0" },

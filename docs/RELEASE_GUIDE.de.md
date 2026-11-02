@@ -1,8 +1,9 @@
-# Release v1.1.0
+# Release-Checkliste – News Ticker v1.1.2
 
-1. Das komplette neue Repository mit diesem Paket erstellen.
-2. GitHub Desktop starten und das vorhandene Repository HomeAssi82VK/ha-news-ticker klonen/öffnen.
-3. Den Inhalt des erzeugten Ordners ha-news-ticker-v1.1.0 in den geklonten Repository-Ordner kopieren (nicht den Ordner selbst, keine neue Repository-Gründung).
-4. In GitHub Desktop Änderungen prüfen, committen und zu main pushen.
-5. GitHub Actions (Validate, HACS, Hassfest) kontrollieren. Erst nach grünen Prüfungen das Release v1.1.0 aus main veröffentlichen.
-6. Im bestehenden hacs/default Pull Request #12602 den Release-Link und die neuen erfolgreichen Action-Links aktualisieren. Kein neuer PR erforderlich.
+1. Das vollständige Repository auf `main` hochladen bzw. die geänderten Dateien im bestehenden Repository ersetzen. Kein neues Repository anlegen.
+2. Vor dem Release die Versionsnummern im Manifest, im Frontend, in der README und in der deutschen Anleitung kontrollieren.
+3. Unter GitHub Actions die HACS-, Hassfest- und Python/JavaScript-Prüfungen abwarten.
+4. Nach erfolgreichen Prüfungen das stabile Release `v1.1.2` vom aktuellen `main`-Commit veröffentlichen. Kein Pre-release.
+5. Über HACS installieren bzw. aktualisieren; Home Assistant Core neu starten und die Dashboard-Ressource `/news_ticker/news-ticker-card.js?v=1.1.2` kontrollieren.
+
+Der HACS-Aufnahme-Pull-Request #12602 ist bereits zusammengeführt. Für reguläre Updates ist kein neuer HACS-PR nötig.
